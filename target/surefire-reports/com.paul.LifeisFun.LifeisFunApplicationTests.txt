@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.paul.LifeisFun.LifeisFunApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.089 s - in com.paul.LifeisFun.LifeisFunApplicationTests
