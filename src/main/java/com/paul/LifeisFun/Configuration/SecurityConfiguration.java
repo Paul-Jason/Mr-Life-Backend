@@ -19,38 +19,57 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+//	
+//	@Autowired
+//	private DataSource dataSource;
 	
 	@Autowired
-	private DataSource dataSource;
-	
-	@Value("${spring.queries.users-query}")
-	private String usersQuery;
-	
-	@Value("${spring.queries.roles-query}")
-	private String rolesQuery;
-
-	
-	@Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
-			.usersByUsernameQuery(usersQuery)
-			.authoritiesByUsernameQuery(rolesQuery)
-			.dataSource(dataSource)
-			.passwordEncoder(bCryptPasswordEncoder);
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.inMemoryAuthentication().withUser("paul").password("paul9848").roles("ADMIN");
+		
+//		auth.jdbcAuthentication()
+//			.usersByUsernameQuery("select email , password from user where email = ?")
+//			.authoritiesByUsernameQuery("select u.email, r.role from user u inner join user_role ur on(u.user_id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.email=?")
+//			.dataSource(dataSource)
+//			.passwordEncoder(bCryptPasswordEncoder);
 	}
 	
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
-		
+
 		httpSecurity.authorizeRequests()
-							.antMatchers("/user").permitAll()
-							.antMatchers("/admin/**").hasAuthority("ADMIN")
-							.anyRequest()
-							.authenticated()
-							.and()
-							.httpBasic();
+			.antMatchers("/user/**").permitAll()
+			.antMatchers("/admin/**").permitAll()
+			.and().httpBasic();
 		httpSecurity.csrf().disable();
 		
+//		httpSecurity.authorizeRequests().anyRequest().hasAnyRole("ADMIN")
+//	    .and()
+//	    .httpBasic();
+		
+//		httpSecurity.authorizeRequests()
+//				.antMatchers("/user/**").permitAll()
+//				.antMatchers("/admin/**").hasAuthority("ADMIN")
+//				.anyRequest()
+//				.authenticated().and().httpBasic();
+//		httpSecurity.csrf().disable();
+		
+//		httpSecurity.authorizeRequests()
+//						.antMatchers("/").permitAll()
+//						.antMatchers("/login").permitAll()
+//						.antMatchers("/registration").permitAll()
+//						.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+//						.authenticated().and().httpBasic()
+//						.and().csrf().disable().formLogin()
+//						.loginPage("/login").failureUrl("/login?error=true")
+//						.defaultSuccessUrl("/admin/home")
+//						.usernameParameter("email")
+//						.passwordParameter("password")
+//						.and().logout()
+//						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//						.logoutSuccessUrl("/").and().exceptionHandling()
+//						.accessDeniedPage("/access-denied");
+				
 		
 //		httpSecurity.csrf().disable();
 //		httpSecurity.authorizeRequests()

@@ -40,7 +40,7 @@ public class AdminController {
 	// 		  present with in that interest.
 	//Not Done: Validating the type sent from the request body, exception if the
 	//          type is wrong.
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping(value = "/admin/interests")
 	public Interest createInterest(@Valid @RequestBody Interest interest) {
 		Interest interestR = interestRepository.save(interest);
@@ -49,7 +49,7 @@ public class AdminController {
 	
 	//Input: Interest name in the path, post in the request body.
 	//Output: Returning the entire post.
-	@PreAuthorize("hasAnyRole('ADMIN')")
+//	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping(value = "/admin/interests/{interest_id}/post")
 	public Post createPostOfAInterest(@PathVariable int interest_id,@Valid @RequestBody Post post) {
 		Optional<Interest> interestOptional = interestRepository.findById(interest_id);

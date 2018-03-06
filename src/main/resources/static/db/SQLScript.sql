@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
   user_id int(11) NOT NULL AUTO_INCREMENT,
-  username varchar(255) NOT NULL,
+  user_name varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   PRIMARY KEY (user_id)
@@ -27,9 +27,4 @@ CREATE TABLE user_role (
   CONSTRAINT FKa68196081fvovjhkek5m97n3y FOREIGN KEY (role_id) REFERENCES role (role_id)
 );
 
-INSERT INTO role VALUES (1,'ADMIN');
-
-select email , password from user where email = 'pauljason9848@gmail.com'
-
-select u.email, r.role from user u inner join user_role ur on(u.user_id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.email= 'pauljason9848@gmail.com'
 
