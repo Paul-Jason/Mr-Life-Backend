@@ -27,6 +27,9 @@ public class Post {
 	@Column(name = "content", nullable = false)
 	private String content;
 	
+	@Column(name = "youtube_link", nullable = true)
+	private String youTubeLink;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JsonIgnore
 	private Interest interest;
