@@ -3,7 +3,7 @@ Implementation-Title: LifeisFun
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: I329046
 Implementation-Vendor-Id: com.paul
-Build-Jdk: 1.8.0_161
+Build-Jdk: 1.8.0_171
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/LifeisFun
 Created-By: Maven Integration for Eclipse

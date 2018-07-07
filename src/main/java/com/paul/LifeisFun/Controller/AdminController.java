@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.json.JSONObject;
+import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -78,5 +80,4 @@ public class AdminController {
 	public void deletePostOfAInterest(@PathVariable int interest_id, @PathVariable int post_id) {
 		postRepository.deleteById(post_id);
 	}
-	
 }
